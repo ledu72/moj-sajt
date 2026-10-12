@@ -2,7 +2,7 @@
 
 // Paste the Apps Script URL here after running Skill 03
 // (adresa koja se završava na /exec, vidi apps-script/README.md)
-const ENDPOINT = '';
+const ENDPOINT = 'https://script.google.com/macros/s/AKfycbzrerFNKefudKXkRAnVGEGhehVZvashWplLXnUgQsSw7lM8rCXuFy6J4gAhu-tEJlXc/exec';
 
 // Dok je ENDPOINT prazan, forma otvara email program sa popunjenom porukom.
 const FALLBACK_EMAIL = 'seventytwoweb@gmail.com';
