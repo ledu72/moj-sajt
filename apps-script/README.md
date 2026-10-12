@@ -7,13 +7,13 @@
 1. Napravi novu Google tabelu (npr. "SeventyTwo zahtevi"). Listove Pozivi, Upiti i Blokirano skripta pravi sama.
 2. U tabeli: Extensions > Apps Script.
 3. Obriši sve iz `Code.gs` u editoru i nalepi ceo sadržaj fajla `apps-script/Code.gs`.
-4. Na vrhu skripte promeni:
-   - `ADMIN_PASSWORD`: tvoja lozinka za admin stranicu. Menjaj je samo u Apps Script editoru, ne u fajlu na GitHub-u.
+4. Na vrhu skripte po potrebi promeni:
    - `NOTIFY_TO`: adresa na koju stižu obaveštenja (sada seventytwoweb@gmail.com).
    - `ADMIN_URL`: adresa admin stranice, npr. `https://TVOJ-SAJT.vercel.app/admin.html`.
    - `SHEET_URL`: adresa tabele (nije obavezno).
-5. Deploy > New deployment > Web app. Execute as: **Me**. Who has access: **Anyone**. Odobri dozvole kada Google pita.
-6. Kopiraj adresu koja se završava na `/exec` i upiši je u `config.js` kao `ENDPOINT`, pa objavi sajt ponovo.
+5. Lozinka za admin se ne piše u kod: postavljaš je pri prvom otvaranju admin stranice (zaboravljena lozinka: Project Settings > Script Properties > obriši `ADMIN_HASH`).
+6. Deploy > New deployment > Web app. Execute as: **Me**. Who has access: **Anyone**. Odobri dozvole kada Google pita.
+7. Kopiraj adresu koja se završava na `/exec` i upiši je u `config.js` kao `ENDPOINT`, pa objavi sajt ponovo.
 
 ## Kasnije izmene skripte
 

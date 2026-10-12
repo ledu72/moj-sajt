@@ -38,11 +38,30 @@
     <p class="muted">Admin stranica čita zahteve iz Google tabele preko Apps Script adrese. Ta adresa još nije upisana u <code>config.js</code>.</p>
     <ol class="a-steps">
       <li>Napravi Google tabelu, pa otvori Extensions, zatim Apps Script.</li>
-      <li>Nalepi sadržaj fajla <code>apps-script/Code.gs</code> i promeni <code>ADMIN_PASSWORD</code>.</li>
+      <li>Nalepi sadržaj fajla <code>apps-script/Code.gs</code>.</li>
       <li>Deploy, New deployment, Web app. Execute as: Me. Access: Anyone.</li>
       <li>Adresu koja se završava na <code>/exec</code> upiši u <code>config.js</code> kao <code>ENDPOINT</code>.</li>
     </ol>
     <a class="btn btn--primary" href="admin.html?demo">Pogledaj admin sa probnim podacima</a>
+  </section>
+
+  <!-- Prvo otvaranje: postavljanje lozinke -->
+  <section class="a-panel" id="setpass" hidden>
+    <span class="tag">Prvo otvaranje</span>
+    <h1 class="h2">Postavi <em>lozinku.</em></h1>
+    <p class="muted">Ovo se radi samo jednom. Lozinka se ne čuva na sajtu, već samo njen otisak u tvom Google nalogu.</p>
+    <form class="form" id="setpassForm">
+      <div class="field">
+        <label for="a-new">Nova lozinka (bar 8 znakova)</label>
+        <input class="input" id="a-new" type="password" autocomplete="new-password" minlength="8" required>
+      </div>
+      <div class="field">
+        <label for="a-new2">Ponovi lozinku</label>
+        <input class="input" id="a-new2" type="password" autocomplete="new-password" minlength="8" required>
+      </div>
+      <p class="bk-error" id="setpassError" role="alert"></p>
+      <button class="btn btn--primary btn--block" type="submit">Sačuvaj lozinku</button>
+    </form>
   </section>
 
   <!-- Prijava -->

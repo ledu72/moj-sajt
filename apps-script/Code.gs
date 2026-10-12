@@ -18,9 +18,10 @@
 var NOTIFY_TO   = 'seventytwoweb@gmail.com';
 var SENDER_NAME = 'SeventyTwo sajt';
 var BRAND       = 'SeventyTwo';
-// Lozinka za admin stranicu. OBAVEZNO promeni pre objave skripte.
-// Dok stoji PROMENI-ME, admin stranica ne radi.
-var ADMIN_PASSWORD = 'PROMENI-ME';
+// Lozinka za admin stranicu se NE piše ovde. Postavlja se pri prvom otvaranju
+// admin stranice i čuva se samo kao otisak (hash) u Script Properties.
+// Zaboravljena lozinka: Project Settings > Script Properties > obriši ADMIN_HASH,
+// pa je postavi ponovo na admin stranici.
 // Linkovi u dnu svakog obaveštenja. Prazno sakriva link.
 var ADMIN_URL   = 'https://seventytwo-develop.vercel.app/admin.html';
 var SHEET_URL   = '';
@@ -220,10 +221,30 @@ function slots_() {
 
 function admin_(action, p) {
   var cache = CacheService.getScriptCache();
-  if (!ADMIN_PASSWORD || ADMIN_PASSWORD === 'PROMENI-ME') return { ok: false, error: 'setup' };
+  var props = PropertiesService.getScriptProperties();
+  var key = String(p.key || '');
+
+  // Prvo otvaranje: lozinka još ne postoji, pa je admin stranica postavlja.
+  if (!props.getProperty('ADMIN_HASH')) {
+    if (action !== 'setup') return { ok: false, error: 'setup' };
+    if (key.length < 8) return { ok: false, error: 'short' };
+    var lock = LockService.getScriptLock();
+    lock.waitLock(8000);
+    try {
+      if (props.getProperty('ADMIN_HASH')) return { ok: false, error: 'auth' };
+      var salt = Utilities.getUuid();
+      props.setProperty('ADMIN_SALT', salt);
+      props.setProperty('ADMIN_HASH', hash_(salt, key));
+    } finally {
+      lock.releaseLock();
+    }
+    return { ok: true };
+  }
+
+  if (!key) return { ok: false, error: 'auth' };   // samo otvaranje stranice, ne broji se kao promašaj
   var fails = Number(cache.get('fails') || 0);
   if (fails >= 8) return { ok: false, error: 'locked' };
-  if (String(p.key || '') !== ADMIN_PASSWORD) {
+  if (hash_(props.getProperty('ADMIN_SALT'), key) !== props.getProperty('ADMIN_HASH')) {
     cache.put('fails', String(fails + 1), 600);   // 8 promašaja zaključava na 10 minuta
     return { ok: false, error: 'auth' };
   }
@@ -487,6 +508,11 @@ function buildHtml_(d) {
 function json_(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+function hash_(salt, key) {
+  return Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, salt + key, Utilities.Charset.UTF_8)
+    .map(function (b) { return ('0' + (b & 255).toString(16)).slice(-2); }).join('');
 }
 
 function clip_(v) { return String(v == null ? '' : v).slice(0, 2000); }

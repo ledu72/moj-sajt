@@ -60,14 +60,14 @@ function api(action, params = {}) {
 const ERRORS = {
   auth: 'Pogrešna lozinka.',
   locked: 'Previše pogrešnih pokušaja. Probaj ponovo za 10 minuta.',
-  setup: 'U Code.gs još stoji PROMENI-ME. Promeni ADMIN_PASSWORD i objavi novu verziju skripte.',
+  short: 'Lozinka mora da ima bar 8 znakova.',
 };
 const errorText = (json) => ERRORS[json && json.error] || 'Nešto nije u redu sa serverom. Probaj ponovo.';
 
 /* ---------- Screens ---------- */
 
 function show(id) {
-  ['setup', 'login', 'app'].forEach((name) => { $(`#${name}`).hidden = name !== id; });
+  ['setup', 'setpass', 'login', 'app'].forEach((name) => { $(`#${name}`).hidden = name !== id; });
   $('#topActions').hidden = id !== 'app';
 }
 
@@ -76,7 +76,8 @@ function load() {
   return api('list')
     .then((json) => {
       if (!json.ok) {
-        if (['auth', 'locked', 'setup'].includes(json.error)) { logout(errorText(json)); return; }
+        if (json.error === 'setup') { show('setpass'); return; }   // lozinka još nije postavljena
+        if (['auth', 'locked'].includes(json.error)) { logout(key ? errorText(json) : ''); return; }
         throw new Error(json.error);
       }
       state = json;
@@ -103,6 +104,24 @@ $('#loginForm').addEventListener('submit', (e) => {
   try { sessionStorage.setItem(KEY_STORE, key); } catch (err) { /* private mode */ }
   $('#loginError').textContent = '';
   load();
+});
+
+// Prvo otvaranje: postavljanje lozinke
+$('#setpassForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const error = $('#setpassError');
+  const first = $('#a-new').value;
+  if (first.length < 8) { error.textContent = ERRORS.short; return; }
+  if (first !== $('#a-new2').value) { error.textContent = 'Lozinke nisu iste.'; return; }
+  error.textContent = '';
+  key = first;
+  api('setup').then((json) => {
+    if (!json.ok) { error.textContent = json.error === 'auth' ? 'Lozinka je već postavljena. Prijavi se.' : errorText(json); return; }
+    try { sessionStorage.setItem(KEY_STORE, key); } catch (err) { /* private mode */ }
+    $('#a-new').value = '';
+    $('#a-new2').value = '';
+    load();
+  }).catch(() => { error.textContent = 'Server se ne javlja.'; });
 });
 
 /* ---------- Render ---------- */
@@ -350,5 +369,4 @@ function demoApi(action, p) {
 
 if (DEMO) load();
 else if (!ENDPOINT) show('setup');
-else if (key) load();
-else show('login');
+else load();   // bez lozinke server javlja da li treba prijava ili prvo postavljanje lozinke
