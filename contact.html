@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="sr" data-en-title="Written Request for a Website | SeventyTwo" data-en-desc="Prefer writing to calling? Answer four short questions and SeventyTwo sends you a proposal and a price for your small business website.">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pisani upit za izradu sajta | SeventyTwo</title>
+  <meta name="description" content="Više voliš da pišeš nego da zoveš? Odgovori na četiri kratka pitanja i dobijaš predlog i cenu za sajt tvoje firme. SeventyTwo, Beograd.">
+  <link rel="canonical" href="https://seventytwo-develop.vercel.app/contact.html">
+  <link rel="icon" href="images/mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Sora:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4d6d"/><stop offset=".55" stop-color="#c2183c"/><stop offset="1" stop-color="#6d0b1f"/></linearGradient>
+  </defs>
+  <symbol id="mark" viewBox="0 0 56 34"><g fill="url(#gm)"><path d="M5 3h23L15 31H7L17.2 9H3.5z"/><path transform="translate(3 0)" d="M27 3H43a7 7 0 0 1 7 7v2a7 7 0 0 1-7 7H33.5l-2.8 6H48l-2.8 6H20l6.2-13.5a7.5 7.5 0 0 1 6.8-4.5H42a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H24.2z"/></g></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+</svg>
+
+<header class="header" id="header">
+  <div class="header-in">
+    <a class="brand" href="index.html" aria-label="SeventyTwo Develop, početna"><svg class="brand-mark" viewBox="0 0 56 34" aria-hidden="true"><use href="#mark"/></svg><span class="brand-text"><b>Seventy Two</b><i>Develop</i></span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Meni" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
+    <nav class="nav" id="nav" aria-label="Glavna navigacija">
+      <a href="index.html" data-en="Home">Početna</a>
+      <a href="index.html#saradnja" data-en="How it works">Saradnja</a>
+      <a href="index.html#radovi" data-en="Work">Radovi</a>
+      <a href="index.html#usluge" data-en="Services">Usluge</a>
+      <a href="index.html#pitanja" data-en="FAQ">Pitanja</a>
+      <a href="index.html#poziv" class="nav-cta" data-en="Book a call">Zakaži poziv</a>
+      <div class="nav-icons">
+        <a class="nav-icon" href="https://www.instagram.com/seventytwodevelop/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="icon"><use href="#i-instagram"/></svg></a>
+        <button class="lang" id="langToggle" type="button" aria-label="Promeni jezik / Change language"><b>SR</b><span>&nbsp;/ EN</span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="contact" style="margin-top:0;padding-top:130px">
+    <div class="smoke" data-smoke="band"></div>
+    <div class="contact-card">
+      <span class="tag" data-en="Written request">Pisani upit</span>
+      <h1 class="contact-title" data-en="Tell me about your <em>project.</em>">Reci mi nešto o <em>projektu.</em></h1>
+      <p data-en="Four short questions. It takes about a minute.">Četiri kratka pitanja. Traje oko minut.</p>
+
+      <div class="wiz-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+      <form class="form" data-wizard novalidate>
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <fieldset class="wiz-step">
+          <legend data-en="What do you need?">Šta ti treba?</legend>
+          <input type="hidden" name="service">
+          <div class="choices">
+            <button class="choice" type="button" data-value="Novi sajt" data-en="A new website">Novi sajt</button>
+            <button class="choice" type="button" data-value="Sajt sa zakazivanjem" data-en="A website with online booking">Sajt sa onlajn zakazivanjem</button>
+            <button class="choice" type="button" data-value="Cenovnik i rezervacije" data-en="Price list and reservations">Cenovnik i rezervacije</button>
+            <button class="choice" type="button" data-value="Nešto drugo" data-en="Something else">Nešto drugo</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="wiz-step">
+          <legend data-en="What does your business do, and where?">Čime se baviš i gde?</legend>
+          <div class="field">
+            <label class="sr-only" for="w-business" data-en="Business and city">Delatnost i grad</label>
+            <input class="input" id="w-business" name="business" type="text" placeholder="Npr. frizerski salon, Beograd" data-en-ph="E.g. hair salon, Belgrade">
+          </div>
+          <div class="wiz-actions">
+            <button class="btn btn--back" type="button" data-back data-en="Back">Nazad</button>
+            <button class="btn btn--primary" type="button" data-next data-en="Continue">Nastavi</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="wiz-step">
+          <legend data-en="When would you like to start?">Kada želiš da kreneš?</legend>
+          <input type="hidden" name="timing">
+          <div class="choices">
+            <button class="choice" type="button" data-value="Što pre" data-en="As soon as possible">Što pre</button>
+            <button class="choice" type="button" data-value="U narednih mesec dana" data-en="Within a month">U narednih mesec dana</button>
+            <button class="choice" type="button" data-value="Samo se raspitujem" data-en="Just looking around">Samo se raspitujem</button>
+          </div>
+          <div class="wiz-actions">
+            <button class="btn btn--back" type="button" data-back data-en="Back">Nazad</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="wiz-step">
+          <legend data-en="Your details">Tvoji podaci</legend>
+          <div class="field">
+            <label for="w-name"><span data-en="Name">Ime</span>*</label>
+            <input class="input" id="w-name" name="name" type="text" autocomplete="name" required placeholder="Marko Marković" data-en-ph="John Smith">
+          </div>
+          <div class="field">
+            <label for="w-email">Email*</label>
+            <input class="input" id="w-email" name="email" type="email" autocomplete="email" required placeholder="marko@primer.rs" data-en-ph="john@example.com">
+          </div>
+          <div class="field">
+            <label for="w-phone"><span data-en="Phone">Telefon</span> <span class="opt" data-en="(optional)">(nije obavezno)</span></label>
+            <input class="input" id="w-phone" name="phone" type="tel" autocomplete="tel" placeholder="06x xxx xxxx">
+          </div>
+          <div class="field">
+            <label for="w-message"><span data-en="Message">Poruka</span> <span class="opt" data-en="(optional)">(nije obavezno)</span></label>
+            <textarea class="input" id="w-message" name="message" placeholder="Šta bi sajt trebalo da radi za tebe?" data-en-ph="What should the website do for you?"></textarea>
+          </div>
+          <div class="wiz-actions">
+            <button class="btn btn--back" type="button" data-back data-en="Back">Nazad</button>
+            <button class="btn btn--primary" type="submit" data-en="Send your request">Pošalji upit</button>
+          </div>
+          <p class="form-note"><span data-en="By sending, you accept the">Slanjem prihvataš</span> <a href="privacy.html" data-en="privacy policy">politiku privatnosti</a>.</p>
+        </fieldset>
+      </form>
+
+      <div class="form-done" role="status">
+        <p class="only-net" data-en="Thank you, your request is on its way.">Hvala, tvoj upit je poslat.</p>
+        <p class="only-mail" data-en="Your email app opened with the request filled in. Send that email to finish.">Otvorio se tvoj email sa popunjenim upitom. Pošalji taj email da završiš.</p>
+        <p data-en="I will reply to the email you entered.">Odgovaram ti na email iz forme.</p>
+      </div>
+
+      <p class="form-note form-alt" style="max-width:none"><span data-en="Faster by phone?">Brže ti je pozivom?</span> <a href="index.html#poziv" data-en="Book a call">Zakaži poziv</a>. <span data-en="Or write to">Ili piši na</span> <a href="mailto:seventytwoweb@gmail.com">seventytwoweb@gmail.com</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-in">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="index.html" aria-label="SeventyTwo Develop, početna"><svg class="brand-mark" viewBox="0 0 56 34" aria-hidden="true"><use href="#mark"/></svg><span class="brand-text"><b>Seventy Two</b><i>Develop</i></span></a>
+        <p class="footer-tagline" data-en="Digital solutions <em>made to fit you.</em>">Digitalna rešenja <em>po tvojoj meri.</em></p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/seventytwodevelop/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="icon"><use href="#i-instagram"/></svg></a>
+          <a href="mailto:seventytwoweb@gmail.com" aria-label="Email"><svg class="icon"><use href="#i-mail"/></svg></a>
+        </div>
+      </div>
+      <nav class="footer-cols" aria-label="Linkovi u podnožju">
+        <div>
+          <h2 data-en="Main">Glavno</h2>
+          <a href="index.html" data-en="Home">Početna</a>
+          <a href="index.html#poziv" data-en="Book a call">Zakaži poziv</a>
+          <a href="contact.html" data-en="Written request">Pisani upit</a>
+        </div>
+        <div>
+          <h2 data-en="Sections">Sekcije</h2>
+          <a href="index.html#saradnja" data-en="How it works">Saradnja</a>
+          <a href="index.html#radovi" data-en="Work">Radovi</a>
+          <a href="index.html#usluge" data-en="Services">Usluge</a>
+          <a href="index.html#pitanja" data-en="FAQ">Pitanja</a>
+        </div>
+        <div>
+          <h2 data-en="Social">Mreže</h2>
+          <a href="https://www.instagram.com/seventytwodevelop/" target="_blank" rel="noopener">Instagram</a>
+          <a href="mailto:seventytwoweb@gmail.com">Email</a>
+        </div>
+        <div>
+          <h2 data-en="Legal">Pravno</h2>
+          <a href="privacy.html" data-en="Privacy policy">Politika privatnosti</a>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p data-en="© 2026 SeventyTwo. All rights reserved.">© 2026 SeventyTwo. Sva prava zadržana.</p>
+      <p data-en="Designed in Belgrade.<br>Built for the world.">Dizajnirano u Beogradu.<br>Pravljeno za svet.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

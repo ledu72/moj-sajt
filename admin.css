@@ -1,0 +1,100 @@
+/* SeventyTwo — admin stranica. Koristi tokene i osnovne klase iz styles.css. */
+
+.admin { letter-spacing: -0.02em; }
+.admin code { padding: 1px 6px; font-size: 0.9em; letter-spacing: 0; background: var(--field); border-radius: 6px; }
+
+.a-top {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 16px; background: rgba(0, 0, 0, 0.85); border-bottom: 1px solid var(--line);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+}
+.a-top-actions { display: flex; gap: 8px; }
+.a-top-actions[hidden] { display: none; }
+.a-top .btn { min-height: 40px; padding: 4px 12px; font-size: 14px; }
+
+.a-main { width: min(760px, 100% - 32px); margin-inline: auto; padding: 24px 0 80px; }
+.a-panel { margin-top: 8vh; padding: 28px 22px; background: var(--card); border: 1px solid var(--line); border-radius: 22px; }
+.a-panel .h2 { margin: 12px 0 10px; }
+.a-panel .tag { background: var(--accent); border-color: var(--accent); }
+.a-steps { margin: 18px 0 22px; padding-left: 20px; display: grid; gap: 8px; color: var(--text-2); }
+
+.a-demo { margin-bottom: 16px; padding: 10px 14px; font-size: 14px; border: 1px dashed var(--accent); border-radius: 12px; color: var(--text-2); }
+
+/* Brojke na vrhu */
+.a-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.a-stat { padding: 14px 12px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; }
+.a-stat b { display: block; font-family: var(--display); font-size: 28px; line-height: 1.1; font-weight: 600; letter-spacing: -0.03em; }
+.a-stat span { font-size: 13px; color: var(--text-3); }
+.a-stat.is-hot { border-color: var(--accent); background: var(--accent-soft); }
+
+/* Kartice za pregled */
+.a-tabs { margin-top: 18px; display: flex; gap: 6px; padding: 5px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+.a-tab { flex: 1; min-height: 44px; padding: 0 8px; font-size: 15px; background: none; border: 0; border-radius: 10px; color: var(--text-3); }
+.a-tab.is-active { background: var(--panel); color: var(--white); }
+.a-tab i { font-style: normal; font-size: 12px; margin-left: 4px; padding: 2px 7px; border-radius: 999px; background: var(--accent); color: #fff; }
+.a-tab i:empty { display: none; }
+
+.a-filters { margin: 14px 0 6px; display: flex; flex-wrap: wrap; gap: 8px; }
+.a-filters:empty { display: none; }
+.a-filters .chip { min-height: 40px; font-size: 14px; }
+
+.a-day { margin: 22px 0 10px; display: flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 17px; font-weight: 500; letter-spacing: -0.03em; }
+.a-day small { padding: 2px 9px; font-family: var(--sans); font-size: 12px; letter-spacing: 0; border-radius: 999px; background: var(--accent); }
+.a-empty { margin-top: 26px; padding: 30px 20px; text-align: center; color: var(--text-4); border: 1px dashed var(--line); border-radius: 18px; }
+
+.a-card { margin-top: 10px; padding: 16px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; }
+.a-card.is-new { border-color: rgba(255, 77, 109, 0.6); }
+.a-card.is-off { opacity: 0.55; }
+.a-card-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.a-time { font-family: var(--display); font-size: 20px; font-weight: 600; letter-spacing: 0; }
+.a-name { font-size: 18px; font-weight: 500; overflow-wrap: anywhere; }
+.a-badge { margin-left: auto; padding: 3px 10px; font-size: 12px; letter-spacing: 0; border-radius: 999px; border: 1px solid var(--line); color: var(--text-2); white-space: nowrap; }
+.a-badge[data-s="Novo"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.a-badge[data-s="Potvrđen"], .a-badge[data-s="Odgovoreno"] { border-color: #3ecf8e; color: #7be3b4; }
+.a-meta { margin-top: 6px; font-size: 15px; color: var(--text-3); overflow-wrap: anywhere; }
+.a-msg { margin-top: 10px; padding: 12px 14px; font-size: 15px; line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; background: var(--black); border-left: 3px solid var(--accent); border-radius: 8px; color: var(--text-2); }
+
+.a-row { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+.a-row .btn { min-height: 44px; padding: 4px 14px; font-size: 14px; }
+.a-row .btn--quiet { border-color: var(--line); color: var(--text-2); }
+
+.a-note { margin-top: 12px; }
+.a-note summary { min-height: 36px; display: inline-flex; align-items: center; font-size: 14px; color: var(--text-3); cursor: pointer; }
+.a-note textarea { margin-top: 6px; min-height: 80px; }
+.a-note .btn { margin-top: 8px; min-height: 40px; font-size: 14px; }
+
+/* Slobodni dani */
+.a-help { margin: 16px 0 12px; font-size: 15px; color: var(--text-3); }
+.a-blockday { margin-top: 14px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+.a-blockday b { font-family: var(--display); font-weight: 500; letter-spacing: -0.03em; }
+.admin .bk-days { margin-inline: -16px; padding-inline: 16px; }
+.admin .bk-day.is-blocked, .admin .bk-time.is-blocked { background: none; border: 1px dashed var(--accent-hi); color: var(--accent-hi); text-decoration: line-through; }
+.admin .bk-day.is-blocked span { color: var(--accent-hi); }
+.admin .bk-day.is-picked { text-decoration: none; }
+.admin .bk-time.is-booked { background: none; border: 1px solid #3ecf8e; color: #7be3b4; opacity: 1; }
+.admin .bk-day i { width: 6px; height: 6px; margin-top: 3px; border-radius: 50%; background: #3ecf8e; }
+.a-legend { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-3); }
+.a-legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; margin-right: 6px; border-radius: 3px; background: var(--field); vertical-align: -1px; }
+.a-legend .l-booked::before { background: none; border: 1px solid #3ecf8e; }
+.a-legend .l-blocked::before { background: none; border: 1px dashed var(--accent-hi); }
+
+.a-foot { margin-top: 34px; font-size: 14px; text-align: center; }
+.a-foot a { color: var(--text-3); text-decoration: underline; }
+
+.a-toast {
+  position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom)); z-index: 60;
+  max-width: calc(100% - 32px); padding: 12px 18px; font-size: 15px;
+  background: var(--panel); border: 1px solid var(--line-strong); border-radius: 12px;
+  transform: translate(-50%, 200%); transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.a-toast.is-on { transform: translate(-50%, 0); }
+.a-toast.is-bad { border-color: var(--accent-hi); }
+
+.is-busy { opacity: 0.6; pointer-events: none; }
+
+@media (min-width: 810px) {
+  .a-top { padding: 10px 30px; }
+  .a-panel { padding: 44px; }
+  .admin .bk-days { margin: 0; padding: 0; }
+}

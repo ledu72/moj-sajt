@@ -1,0 +1,12 @@
+# U repozitorijum ide samo sajt i backend skripta
+.claude/
+01-client-info-gathering-*/
+02-website-build-rules/
+03-form-backend-setup/
+site-teardown-skill*.md
+research/
+context.md
+images/reference/
+
+.vercel
+.env*

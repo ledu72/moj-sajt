@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin | SeventyTwo</title>
+  <link rel="icon" href="images/mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Sora:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4d6d"/><stop offset=".55" stop-color="#c2183c"/><stop offset="1" stop-color="#6d0b1f"/></linearGradient>
+  </defs>
+  <symbol id="mark" viewBox="0 0 56 34"><g fill="url(#gm)"><path d="M5 3h23L15 31H7L17.2 9H3.5z"/><path transform="translate(3 0)" d="M27 3H43a7 7 0 0 1 7 7v2a7 7 0 0 1-7 7H33.5l-2.8 6H48l-2.8 6H20l6.2-13.5a7.5 7.5 0 0 1 6.8-4.5H42a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H24.2z"/></g></symbol>
+</svg>
+
+<header class="a-top">
+  <a class="brand" href="index.html" aria-label="SeventyTwo Develop, nazad na sajt"><svg class="brand-mark" viewBox="0 0 56 34" aria-hidden="true"><use href="#mark"/></svg><span class="brand-text"><b>Seventy Two</b><i>Admin</i></span></a>
+  <div class="a-top-actions" id="topActions" hidden>
+    <button class="btn" type="button" data-act="refresh">Osveži</button>
+    <button class="btn" type="button" data-act="logout">Odjava</button>
+  </div>
+</header>
+
+<main class="a-main">
+
+  <!-- Backend još nije povezan -->
+  <section class="a-panel" id="setup" hidden>
+    <span class="tag">Podešavanje</span>
+    <h1 class="h2">Backend još nije <em>povezan.</em></h1>
+    <p class="muted">Admin stranica čita zahteve iz Google tabele preko Apps Script adrese. Ta adresa još nije upisana u <code>config.js</code>.</p>
+    <ol class="a-steps">
+      <li>Napravi Google tabelu, pa otvori Extensions, zatim Apps Script.</li>
+      <li>Nalepi sadržaj fajla <code>apps-script/Code.gs</code> i promeni <code>ADMIN_PASSWORD</code>.</li>
+      <li>Deploy, New deployment, Web app. Execute as: Me. Access: Anyone.</li>
+      <li>Adresu koja se završava na <code>/exec</code> upiši u <code>config.js</code> kao <code>ENDPOINT</code>.</li>
+    </ol>
+    <a class="btn btn--primary" href="admin.html?demo">Pogledaj admin sa probnim podacima</a>
+  </section>
+
+  <!-- Prijava -->
+  <section class="a-panel" id="login" hidden>
+    <span class="tag">Admin</span>
+    <h1 class="h2">Prijava.</h1>
+    <form class="form" id="loginForm">
+      <div class="field">
+        <label for="a-key">Lozinka</label>
+        <input class="input" id="a-key" type="password" autocomplete="current-password" required>
+      </div>
+      <p class="bk-error" id="loginError" role="alert"></p>
+      <button class="btn btn--primary btn--block" type="submit">Uđi</button>
+    </form>
+  </section>
+
+  <!-- Aplikacija -->
+  <section id="app" hidden>
+    <p class="a-demo" id="demoNote" hidden>Probni podaci. Ništa se ne čuva i ništa ne dolazi sa pravog sajta.</p>
+
+    <div class="a-stats" id="stats"></div>
+
+    <div class="a-tabs" role="tablist">
+      <button class="a-tab is-active" type="button" role="tab" data-view="calls">Pozivi <i id="countCalls"></i></button>
+      <button class="a-tab" type="button" role="tab" data-view="leads">Upiti <i id="countLeads"></i></button>
+      <button class="a-tab" type="button" role="tab" data-view="blocks">Slobodni dani</button>
+    </div>
+
+    <div class="a-filters" id="filters"></div>
+    <div id="view" aria-live="polite"></div>
+
+    <p class="a-foot"><a id="sheetLink" href="#" target="_blank" rel="noopener" hidden>Otvori Google tabelu</a></p>
+  </section>
+</main>
+
+<div class="a-toast" id="toast" role="status"></div>
+
+<script src="config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

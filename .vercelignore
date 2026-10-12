@@ -1,0 +1,16 @@
+# Na Vercel ide samo sajt
+.claude
+.git
+.gitignore
+.env*
+01-client-info-gathering-*
+02-website-build-rules
+03-form-backend-setup
+site-teardown-skill*.md
+research
+context.md
+apps-script
+images/reference
+images/logo.png
+images/rad-bojke-barber.png
+images/rad-carobna-igraonica.png
