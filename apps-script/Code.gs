@@ -24,7 +24,7 @@ var BRAND       = 'SeventyTwo';
 // pa je postavi ponovo na admin stranici.
 // Linkovi u dnu svakog obaveštenja. Prazno sakriva link.
 var ADMIN_URL   = 'https://seventytwo-develop.vercel.app/admin.html';
-var SHEET_URL   = '';
+var SHEET_URL   = 'https://docs.google.com/spreadsheets/d/1bEiviEjaEOV-sfYobtmWVA_3Ji7pKv271qmIl-EA288/edit';
 // Prazno kada je skripta vezana za tabelu. Popuni kada je samostalna.
 var SHEET_ID    = '';
 
