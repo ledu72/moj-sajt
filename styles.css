@@ -619,6 +619,9 @@ textarea.input { min-height: 110px; resize: vertical; }
   .cost-pills { gap: 50vh; }
 
   .services, .works { grid-template-columns: 1fr 1fr; }
+  /* Treći rad zauzima ceo red, da ne ostane sam u pola reda */
+  .works .work:nth-child(3):last-child { grid-column: 1 / -1; aspect-ratio: 970 / 420; }
+  .works .work:nth-child(3):last-child .work-shot { left: 20%; width: 60%; }
   .service { padding: 45px 30px; }
 
   .tile { width: 58px; height: 58px; }
