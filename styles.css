@@ -708,3 +708,18 @@ textarea.input { min-height: 110px; resize: vertical; }
 @media (prefers-reduced-motion: reduce) {
   .hero-asta { animation: none; }
 }
+
+/* ---------- Paketi: tri kolone ---------- */
+
+.plans--three { width: min(1040px, 100%); }
+.plans--three .plan { display: flex; flex-direction: column; }
+.plans--three .plan-for { min-height: 0; }
+.plan-example { margin-top: auto; padding-top: 20px; font-size: 14px; color: var(--text-4); }
+.plan-example a { color: var(--accent-hi); text-decoration: underline; text-underline-offset: 3px; }
+.plans-note { margin: 28px auto 0; max-width: 560px; text-align: center; font-size: 16px; color: var(--text-3); }
+
+@media (min-width: 1024px) {
+  .plans.plans--three { grid-template-columns: repeat(3, 1fr); }
+  .plans--three .plan-name { min-height: 2.8em; }
+  .plans--three .plan-for { min-height: 84px; }
+}
