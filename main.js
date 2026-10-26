@@ -80,6 +80,22 @@ if ('IntersectionObserver' in window && !reduceMotion) {
   revealEls.forEach((el) => el.classList.add('in'));
 }
 
+/* ---------- Hero video ---------- */
+
+// Video ide samo dok je hero na ekranu (štedi bateriju na telefonu), a stoji ako posetilac ne želi animacije
+const heroVideo = $('.hero-video');
+if (heroVideo) {
+  if (reduceMotion) {
+    heroVideo.removeAttribute('autoplay');
+    heroVideo.pause();
+  } else if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) heroVideo.play().catch(() => { /* pregledač ne dozvoljava automatsko puštanje */ });
+      else heroVideo.pause();
+    }).observe(heroVideo);
+  }
+}
+
 /* ---------- Hero browser mockup ---------- */
 
 const mock = $('#mock');

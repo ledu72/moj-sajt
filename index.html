@@ -77,7 +77,10 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="smoke" data-smoke="hero"></div>
+    <!-- Pozadinski video (images/hero-asta.mp4), zatamnjen preko CSS-a da tekst ostane čitljiv -->
+    <div class="hero-media" aria-hidden="true">
+      <video class="hero-video" src="images/hero-asta.mp4" autoplay muted loop playsinline preload="auto"></video>
+    </div>
     <div class="hero-in">
       <p class="kicker" data-reveal><i></i><span>Web Development, Beograd</span></p>
       <h1 class="h1" data-reveal data-en="Make it easier. <em>Grow your business.</em>">Olakšaj sebi. <em>Unapredi svoj biznis.</em></h1>

@@ -10,3 +10,6 @@ images/reference/
 
 .vercel
 .env*
+
+# Video koji nije na sajtu
+fallen-samurai*.mp4
