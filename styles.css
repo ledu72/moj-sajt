@@ -723,3 +723,15 @@ textarea.input { min-height: 110px; resize: vertical; }
   .plans--three .plan-name { min-height: 2.8em; }
   .plans--three .plan-for { min-height: 84px; }
 }
+
+/* Bez telefonskog dugmeta za play preko Aste (iPhone ga prikaže kad ne pusti video sam) */
+.hero-video::-webkit-media-controls,
+.hero-video::-webkit-media-controls-panel,
+.hero-video::-webkit-media-controls-play-button,
+.hero-video::-webkit-media-controls-start-playback-button,
+.hero-video::-webkit-media-controls-overlay-play-button,
+.hero-video::-webkit-media-controls-enclosure {
+  display: none !important;
+  -webkit-appearance: none;
+  opacity: 0 !important;
+}

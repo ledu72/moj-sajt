@@ -88,11 +88,24 @@ if (heroVideo) {
   if (reduceMotion) {
     heroVideo.removeAttribute('autoplay');
     heroVideo.pause();
-  } else if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) heroVideo.play().catch(() => { /* pregledač ne dozvoljava automatsko puštanje */ });
-      else heroVideo.pause();
-    }).observe(heroVideo);
+  } else {
+    // iPhone u režimu štednje baterije ne pušta video sam. Tada ga pokrećemo na prvi dodir ili skrol,
+    // a do tada stoji prvi kadar (bez telefonskog dugmeta za play, sklonjeno u CSS-u).
+    const play = () => heroVideo.play().catch(() => {});
+    const onGesture = () => {
+      play();
+      ['touchstart', 'pointerdown', 'scroll'].forEach((ev) => window.removeEventListener(ev, onGesture));
+    };
+    ['touchstart', 'pointerdown', 'scroll'].forEach((ev) => window.addEventListener(ev, onGesture, { passive: true }));
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) play();
+        else heroVideo.pause();
+      }).observe(heroVideo);
+    } else {
+      play();
+    }
   }
 }
 
