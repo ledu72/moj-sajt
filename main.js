@@ -547,3 +547,150 @@ if (wizard) {
   });
   showStep(0);
 }
+
+/* ---------- Animated counters ---------- */
+
+const counters = $$('[data-count]');
+if (counters.length && !reduceMotion && 'IntersectionObserver' in window) {
+  const countIo = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      countIo.unobserve(entry.target);
+      const end = Number(entry.target.dataset.count);
+      const start = performance.now();
+      const tick = (now) => {
+        const t = Math.min((now - start) / 1000, 1);
+        entry.target.textContent = Math.round(end * (1 - (1 - t) ** 3));
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach((el) => countIo.observe(el));
+}
+
+/* ---------- Package quiz ---------- */
+
+const QUIZ = {
+  sr: {
+    title: 'Ne znaš koji paket ti treba?', progress: 'Pitanje', again: 'Ponovo', call: 'Zakaži poziv', result: 'Tvoj izbor:',
+    questions: [
+      ['Šta sajt najviše treba da radi?', ['Da me ljudi nađu i vide ozbiljno', 'Da prima zakazivanja', 'Da odmah pokaže cenu']],
+      ['Kako radiš sa mušterijama?', ['Imam stalne usluge i cene', 'Radim po terminima', 'Cena zavisi od mere ili paketa']],
+      ['Na šta gubiš najviše vremena?', ['Objašnjavam šta radim', 'Dogovaram termine', 'Računam ponude']],
+    ],
+    plans: [['Prezentacioni sajt', 'Dovoljno da te ljudi nađu i vide šta radiš.'], ['Sajt sa zakazivanjem', 'Mušterije same biraju termin, a ti ne juriš poruke.'], ['Cenovnik i kalkulator', 'Mušterija odmah vidi cenu, a ti ne računaš svaku ponudu.']],
+  },
+  en: {
+    title: 'Not sure which package you need?', progress: 'Question', again: 'Start over', call: 'Book a call', result: 'Your pick:',
+    questions: [
+      ['What should the website mostly do?', ['Help people find me and look serious', 'Take bookings', 'Show the price right away']],
+      ['How do you work with customers?', ['Fixed services and prices', 'By appointment', 'Price depends on size or package']],
+      ['What takes most of your time?', ['Explaining what I do', 'Arranging appointments', 'Calculating quotes']],
+    ],
+    plans: [['Showcase website', 'Enough for people to find you and see what you do.'], ['Website with booking', 'Customers pick their own slot, so you stop chasing messages.'], ['Price list and calculator', 'Customers see the price right away, so you stop calculating every quote.']],
+  },
+};
+
+const quizEl = $('#quiz');
+if (quizEl) {
+  let answers = [];
+  const renderQuiz = () => {
+    const q = QUIZ[root.lang === 'en' ? 'en' : 'sr'];
+    if (answers.length < q.questions.length) {
+      const [question, options] = q.questions[answers.length];
+      quizEl.innerHTML = '<p class="quiz-step"></p><h3 class="h3"></h3><div class="quiz-opts"></div>';
+      $('.quiz-step', quizEl).textContent = `${q.title} ${q.progress} ${answers.length + 1}/${q.questions.length}`;
+      $('h3', quizEl).textContent = question;
+      options.forEach((label, i) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = label;
+        b.addEventListener('click', () => { answers.push(i); renderQuiz(); });
+        $('.quiz-opts', quizEl).append(b);
+      });
+      return;
+    }
+    // Most votes wins; on a tie the first answer decides.
+    const votes = [0, 1, 2].map((i) => answers.filter((a) => a === i).length);
+    const best = Math.max(...votes);
+    const pick = votes[answers[0]] === best ? answers[0] : votes.indexOf(best);
+    quizEl.innerHTML = '<p class="quiz-step"></p><h3 class="h3"></h3><p class="quiz-why"></p><div class="quiz-actions"><a class="btn btn--primary" href="#poziv"></a><button class="btn" type="button"></button></div>';
+    $('.quiz-step', quizEl).textContent = q.result;
+    $('h3', quizEl).textContent = q.plans[pick][0];
+    $('.quiz-why', quizEl).textContent = q.plans[pick][1];
+    $('.quiz-actions a', quizEl).textContent = q.call;
+    const again = $('.quiz-actions button', quizEl);
+    again.textContent = q.again;
+    again.addEventListener('click', () => { answers = []; renderQuiz(); });
+  };
+  renderQuiz();
+  document.addEventListener('langchange', renderQuiz);
+}
+
+/* ---------- Live PageSpeed test ---------- */
+
+const SPEED_TEXT = {
+  sr: { running: 'Google meri sajt, obično do minut...', bad: 'Upiši ispravnu adresu sajta.', fail: 'Test trenutno nije uspeo. Probaj na', done: 'Rezultat za telefon:', labels: ['Brzina', 'Pristupačnost', 'Dobra praksa', 'SEO'] },
+  en: { running: 'Google is measuring the website, usually up to a minute...', bad: 'Enter a valid website address.', fail: 'The test did not work right now. Try it on', done: 'Phone result:', labels: ['Speed', 'Accessibility', 'Best practices', 'SEO'] },
+};
+
+const speedEl = $('#speed');
+if (speedEl) {
+  const status = $('.speed-status', speedEl);
+  const scores = $('.speed-scores', speedEl);
+  const form = $('.speed-form', speedEl);
+  const button = $('button', form);
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const t = SPEED_TEXT[root.lang === 'en' ? 'en' : 'sr'];
+    const raw = form.elements.url.value.trim() || location.origin;
+    let target;
+    try { target = new URL(/^https?:\/\//i.test(raw) ? raw : `https://${raw}`); } catch (err) { target = null; }
+    scores.hidden = true;
+    if (!target || !target.hostname.includes('.')) { status.textContent = t.bad; return; }
+    status.textContent = t.running;
+    button.disabled = true;
+    try {
+      const api = new URL('https://www.googleapis.com/pagespeedonline/v5/runPagespeed');
+      api.searchParams.set('url', target.href);
+      api.searchParams.set('strategy', 'mobile');
+      ['performance', 'accessibility', 'best-practices', 'seo'].forEach((c) => api.searchParams.append('category', c));
+      const res = await fetch(api);
+      if (!res.ok) throw new Error(res.status);
+      const { categories: c } = (await res.json()).lighthouseResult;
+      const values = [c.performance, c.accessibility, c['best-practices'], c.seo].map((x) => Math.round(x.score * 100));
+      scores.textContent = '';
+      values.forEach((v, i) => {
+        const color = v >= 90 ? '#0cce6b' : v >= 50 ? '#ffa400' : '#ff4e42';
+        const box = document.createElement('div');
+        box.className = 'score';
+        box.innerHTML = `<i style="--v:${v};--c:${color}">${v}</i>`;
+        box.append(t.labels[i]);
+        scores.append(box);
+      });
+      scores.hidden = false;
+      status.textContent = `${t.done} ${target.hostname}`;
+    } catch (err) {
+      status.textContent = `${t.fail} `;
+      const link = document.createElement('a');
+      link.href = `https://pagespeed.web.dev/analysis?url=${encodeURIComponent(target.href)}`;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.textContent = 'pagespeed.web.dev';
+      status.append(link);
+    }
+    button.disabled = false;
+  });
+}
+
+/* ---------- Contact button ---------- */
+
+const fabBtn = $('#fabBtn');
+if (fabBtn) {
+  const fabMenu = $('#fabMenu');
+  const setFab = (open) => { fabMenu.hidden = !open; fabBtn.setAttribute('aria-expanded', String(open)); };
+  fabBtn.addEventListener('click', () => setFab(fabMenu.hidden));
+  $$('a', fabMenu).forEach((a) => a.addEventListener('click', () => setFab(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setFab(false); });
+}

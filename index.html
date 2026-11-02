@@ -145,6 +145,25 @@
     </div>
   </section>
 
+  <!-- PROOF -->
+  <section class="proof" aria-label="Klijenti i činjenice">
+    <div class="wrap">
+      <p class="proof-label" data-reveal data-en="Websites made for">Sajtovi rađeni za</p>
+      <div class="proof-logos" data-reveal>
+        <a href="https://www.zavesepliserosh.rs/" target="_blank" rel="noopener">ROSH zavese</a>
+        <a href="https://petkovic-online.rs/" target="_blank" rel="noopener">Petković Online</a>
+        <a href="https://carobna-igraonica.netlify.app/" target="_blank" rel="noopener">Zvrk igraonica</a>
+        <a href="https://marko-taxi.vercel.app/" target="_blank" rel="noopener">Belgrade Airport Taxi</a>
+      </div>
+      <div class="stats">
+        <div class="stat" data-reveal><b data-count="4">4</b><span data-en="live websites">objavljena sajta</span></div>
+        <div class="stat" data-reveal><b data-count="30">30</b><span data-en="days of free changes">dana besplatnih izmena</span></div>
+        <div class="stat" data-reveal><b data-count="2">2</b><span data-en="languages if you need them">jezika po želji</span></div>
+        <div class="stat" data-reveal><b data-count="15">15</b><span data-en="minute free intro call">minuta besplatan poziv</span></div>
+      </div>
+    </div>
+  </section>
+
   <!-- COST -->
   <section class="cost" id="cost" aria-labelledby="costTitle">
     <div class="cost-sticky">
@@ -372,6 +391,7 @@
         </article>
       </div>
       <p class="plans-note" data-reveal data-en="Every package can be in two languages. Need something else? Tell me on the call and we will put it together.">Svaki paket može na dva jezika. Treba ti nešto drugo? Reci mi na pozivu, pa ćemo složiti.</p>
+      <div class="quiz" id="quiz" data-reveal aria-live="polite"></div>
       <div class="perks">
         <div class="perk" data-reveal>
           <div class="glyph"><svg class="icon"><use href="#i-eye"/></svg></div>
@@ -387,6 +407,19 @@
           <div class="glyph"><svg class="icon"><use href="#i-expand"/></svg></div>
           <h3 class="h3" data-en="Grows with you">Raste sa tobom</h3>
           <p data-en="The website expands as your business does.">Sajt se širi kako raste posao.</p>
+        </div>
+      </div>
+      <div class="offers">
+        <div class="offer" data-reveal>
+          <span class="tag" data-en="Guarantee">Garancija</span>
+          <h3 class="h3" data-en="30 days of free changes">30 dana besplatnih izmena</h3>
+          <p data-en="After launch you have 30 days to ask for changes, at no extra cost.">Posle objave imaš 30 dana da tražiš izmene, bez doplate.</p>
+        </div>
+        <div class="offer" data-reveal>
+          <span class="tag" data-en="Referrals">Preporuka</span>
+          <h3 class="h3" data-en="Bring someone, pay less">Dovedi nekog, plati manje</h3>
+          <div class="deal"><p><b>-10%</b><span data-en="on the second website">na drugi sajt</span></p><p><b>-20%</b><span data-en="on the third website">na treći sajt</span></p></div>
+          <p data-en="The discount applies when you bring a new client.">Popust važi kad dovedeš novog klijenta.</p>
         </div>
       </div>
     </div>
@@ -420,6 +453,17 @@
             <li><svg class="icon"><use href="#i-checkf"/></svg><span data-en="Available after launch too">Dostupan i posle objave</span></li>
           </ul>
         </div>
+      </div>
+      <div class="speed" id="speed" data-reveal>
+        <span class="tag" data-en="Live test">Test uživo</span>
+        <h3 class="h3" data-en="How fast is <em>your website?</em>">Koliko je brz <em>tvoj sajt?</em></h3>
+        <p data-en="Google PageSpeed test for phones, live, right here. Enter your website or leave it empty to test this one.">Google PageSpeed test za telefon, uživo, ovde na strani. Upiši svoj sajt ili ostavi prazno da testiraš ovaj.</p>
+        <form class="speed-form" novalidate>
+          <input class="input" name="url" type="text" inputmode="url" aria-label="Adresa sajta" placeholder="tvojsajt.rs" data-en-ph="yourwebsite.com">
+          <button class="btn btn--primary" type="submit" data-en="Test">Testiraj</button>
+        </form>
+        <p class="speed-status" role="status"></p>
+        <div class="speed-scores" hidden></div>
       </div>
     </div>
   </section>
@@ -583,6 +627,15 @@
 </footer>
 
 <a class="sticky-cta" id="stickyCta" href="#poziv"><svg class="icon"><use href="#i-calendar"/></svg><span data-en="Book a call">Zakaži poziv</span></a>
+
+<div class="fab" id="fab">
+  <div class="fab-menu" id="fabMenu" hidden>
+    <a href="#poziv"><svg class="icon"><use href="#i-calendar"/></svg><span data-en="Book a call">Zakaži poziv</span></a>
+    <a href="https://www.instagram.com/seventytwodevelop/" target="_blank" rel="noopener"><svg class="icon"><use href="#i-instagram"/></svg><span>Instagram</span></a>
+    <a href="mailto:seventytwoweb@gmail.com"><svg class="icon"><use href="#i-mail"/></svg><span>Email</span></a>
+  </div>
+  <button class="fab-btn" id="fabBtn" type="button" aria-expanded="false" aria-controls="fabMenu" aria-label="Kontakt"><svg class="icon"><use href="#i-mail"/></svg></button>
+</div>
 
 <script src="config.js"></script>
 <script src="main.js"></script>

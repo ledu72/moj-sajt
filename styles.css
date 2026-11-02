@@ -735,3 +735,57 @@ textarea.input { min-height: 110px; resize: vertical; }
   -webkit-appearance: none;
   opacity: 0 !important;
 }
+
+/* Proof, quiz, offers, speed test, contact button */
+.proof { padding: 56px 0 0; }
+.proof-label { color: var(--text-4); font-size: 14px; text-align: center; }
+.proof-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 36px; margin-top: 16px; font-family: var(--display); font-weight: 600; font-size: 19px; color: var(--text-3); }
+.proof-logos a { transition: color .2s; }
+.proof-logos a:hover { color: var(--white); }
+.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 40px; }
+.stat { padding: 20px 16px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; text-align: center; }
+.stat b { display: block; font-family: var(--display); font-size: 40px; line-height: 1.1; color: var(--accent-hi); }
+.stat span { font-size: 14px; color: var(--text-3); }
+
+.quiz, .speed, .offer { padding: 28px 22px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; }
+.quiz { margin-top: 32px; }
+.quiz-step { color: var(--text-4); font-size: 14px; }
+.quiz h3 { margin: 6px 0 16px; }
+.quiz-opts { display: grid; gap: 10px; }
+.quiz-opts button { padding: 14px 16px; text-align: left; background: var(--field); border: 1px solid var(--line); border-radius: 10px; transition: border-color .2s; }
+.quiz-opts button:hover { border-color: var(--accent-hi); }
+.quiz-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+
+.offers { display: grid; gap: 16px; margin-top: 32px; }
+.offer .h3 { margin: 10px 0 8px; }
+.offer p { color: var(--text-2); }
+.deal { display: flex; gap: 28px; margin-bottom: 10px; }
+.deal b { display: block; font-family: var(--display); font-size: 34px; color: var(--accent-hi); }
+.deal span { font-size: 14px; }
+
+.speed { margin-top: 32px; }
+.speed .h3 { margin: 10px 0 8px; }
+.speed > p { color: var(--text-2); }
+.speed-form { display: flex; gap: 10px; margin-top: 16px; }
+.speed-form .input { flex: 1; min-width: 0; }
+.speed-status { margin-top: 12px; font-size: 15px; min-height: 1.6em; }
+.speed-status a { text-decoration: underline; }
+.speed-scores { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 12px; }
+.speed-scores[hidden] { display: none; }
+.score { text-align: center; font-size: 14px; color: var(--text-3); }
+.score i { display: grid; place-items: center; width: 76px; height: 76px; margin: 0 auto 8px; border-radius: 50%; font: 700 24px var(--display); color: var(--white); background: radial-gradient(closest-side, var(--card) 80%, transparent 82%), conic-gradient(var(--c) calc(var(--v) * 1%), var(--panel) 0); }
+
+.fab { position: fixed; right: 16px; bottom: 84px; z-index: 60; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.fab-btn { display: grid; place-items: center; width: 54px; height: 54px; border: 0; border-radius: 50%; background: var(--accent); color: var(--white); box-shadow: 0 6px 20px rgba(0, 0, 0, .5); }
+.fab-menu { display: grid; gap: 4px; padding: 8px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; }
+.fab-menu[hidden] { display: none; }
+.fab-menu a { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px; white-space: nowrap; }
+.fab-menu a:hover { background: var(--accent-soft); }
+
+@media (min-width: 810px) {
+  .stats { grid-template-columns: repeat(4, 1fr); }
+  .offers { grid-template-columns: 1fr 1fr; }
+  .quiz, .speed, .offer { padding: 36px; }
+  .speed-scores { grid-template-columns: repeat(4, 1fr); }
+  .fab { right: 24px; bottom: 24px; }
+}
